@@ -32,7 +32,7 @@ async def check_pizza(content,attachemnts):
         if img.content_type == "image/jpeg" or img.content_type == "image/png":
             await img.save(f"temp.{img.content_type[6:]}")
             print(f"temp.{img.content_type[6:]}")
-            if scan(cv2.imread(f"/Users/erykhalicki/Desktop/projects/chatbot/temp.{img.content_type[6:]}")):
+            if scan(cv2.imread(f"/Users/me/Desktop/projects/chatbot/temp.{img.content_type[6:]}")):
                 return True
     if "pi" in content.lower() and "za" in content.lower():
         return True
@@ -48,11 +48,11 @@ async def on_ready():
 @client.event
 async def on_message(message):
     global offenses
-    if message.author.id == 741252538497630302:
+    if message.author.id != client.user:
         if await check_pizza(message.content, message.attachments):
             await message.delete()
             offenses+=1
             print(f"Offenses: {offenses}")
             await message.channel.send(f"Offenses: {offenses}")
 
-client.run('NTM3NzMxODU5MjUwMTUxNDI3.XEjP0Q.aCnHiqswz0GSireZyjzKBW0QcK8')
+client.run('your token')
